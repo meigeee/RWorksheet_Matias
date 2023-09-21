@@ -68,3 +68,46 @@
   seq_back
   
 #11
+#11 Find the sum of these multiples
+  nat_num <- Filter(function(i) { all(i %% 3 == 0||i %% 5 == 0)}, seq(24))
+  nat_num
+  nat_sum <- sum(nat_num)
+  nat_sum
+  #11.a How many data points from 10 to 11?
+    totaldatapts <- length(seq_back) +length(nat_num) + length (nat_sum)
+    totaldatapts
+
+#12 Statements can be grouped together
+   { x <- 0+ x + 5 + 3}
+    #every time I run the code contains syntax error
+    #syntax error occur because there is no given variable or value for x
+    #R reads it as two consecutive plus sign
+    
+#13 Set up a vector named score
+    vscore <- c(72, 86, 92, 63, 88, 89, 91, 92, 75, 75, 77)
+    vscore
+    
+    find_2 <- vscore[2]
+    find_2
+    find_3 <- vscore[3]
+    find_3
+    
+#14 Create a vector a = c(1,2,NA,4,NA,6,7)
+    vector_a = c(1,2,NA,4,NA,6,7)
+    vector_a
+    print(vector_a,na.print="999")
+    
+    #the codes prints the  vector "vector_a" and replaces the NA with 999 
+  
+#15 special type of function calls
+    name = readline(prompt="Input your name: ")
+    age = readline(prompt="Input your age: ")
+    print(paste("My name is",name, "and I am",age ,"years old."))
+    print(R.version.string)
+    
+    #the output depends on what the user is putting about the name and age
+    #it will print based on what the user's data input
+    
+    
+    
+    
