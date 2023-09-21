@@ -66,4 +66,5 @@
 #10 Generate a sequence backwards of the integers from 1 to 100.
   seq_back <- seq(100,1)
   seq_back
+  
 #11
