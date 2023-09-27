@@ -67,7 +67,6 @@
   seq_back <- seq(100,1)
   seq_back
   
-#11
 #11 Find the sum of these multiples
   nat_num <- Filter(function(i) { all(i %% 3 == 0||i %% 5 == 0)}, seq(24))
   nat_num
