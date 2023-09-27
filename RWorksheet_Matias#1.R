@@ -96,7 +96,8 @@
     vector_a
     print(vector_a,na.print="999")
     
-    #the codes prints the  vector "vector_a" and replaces the NA with 999 
+    #the codes prints the  vector "vector_a" 
+    #`and replaces the NA with 999 
   
 #15 special type of function calls
     name = readline(prompt="Input your name: ")
