@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 Worksheet#4a
 
 #1.The table below shows the data about shoe size and height. Create a data frame.
@@ -93,12 +98,103 @@ mathgrades <- data.frame(
 mathgrades
 
 #8b. Without using the rowMean function, output the average score of students whose average math score over 90 points during the semester.
+mathgrades$Average <- (mathgrades$Grade1 + mathgrades$Grade2 + mathgrades$Grade3 + mathgrades$Grade4) / 4
+
+highscorers <- mathgrades[mathgrades$Average > 90,]
+highscorers
+
+if (nrow(highscorers) > 0) {
+  paste(highscorers$Name, "'s average grade this semester is", high_scorers$Average)
+} else {
+  paste("No students have an average math score over 90.")
+}
                    
 
 #8c. Without using the mean function, output as follows for the tests in which the average score was less than 80 out of 4 tests.
+firstTest <- sum(mathgrades$Grade1) / nrow(mathgrades)
+firstTest
+
+secondTest <- sum(mathgrades$Grade2) / nrow(mathgrades)
+secondTest
+
+thirdTest <- sum(mathgrades$Grade3) / nrow(mathgrades)
+thirdTest
+
+fourthTest <- sum(mathgrades$Grade4) / nrow(mathgrades)
+fourthTest
+
+
+if (firstTest < 80) {
+  paste("The 1st test was difficult.")
+} else if(secondTest < 80) {
+  paste("The 2nd test was difficult.")
+} else if(thirdTest < 80) {
+  paste("The 3rd test was difficult.")
+} else if(fourthTest < 80) {
+  paste("The 4th test was difficult.")
+} else {
+  paste("No test had an average score less than 80.")
+}
 
 
 #8d. Without using the max function, output as follows for students whose highest score for a semester exceeds 90 points.
+# annie scores
+if (mathgrades[1,2] > mathgrades[1,3] && mathgrades[1,2] > mathgrades[1,4] && mathgrades[1,2] > mathScore[1,5]) {
+  annieHighest <- mathgrades[1,2]
+} else if (mathgrades[1,3] > mathgrades[1,4] && mathgrades[1,3] > mathgrades[1,5]) {
+  annieHighest <- mathgrades[1,3]
+} else if (mathgrades[1,4] > mathgrades[1,5] && mathgrades[1,2] > mathgrades[1,5]) {
+  annieHighest <- mathgrades[1,4]
+} else {
+  annieHighest <- mathgrades[1,5]
+}
+
+
+# thea scores
+if (mathgrades[2,2] > mathgrades[2,3] && mathgrades[2,2] > mathgrades[2,4] && mathgrades[2,2] > mathgrades[2,5]) {
+  theaHighest <- mathgrades[2,2]
+} else if (mathgrades[2,3] > mathgrades[2,4] && mathgrades[2,3] > mathgrades[2,5]) {
+  theaHighest <-mathgrades[2,3]
+} else if (mathgrades[2,4] > mathgrades[2,5] && mathgrades[2,2] > mathgrades[2,5]) {
+  theaHighest <- mathgrades[2,4]
+} else {
+  theaHighest <- mathgrades[2,5]
+}
+
+# steve scores
+if (mathgrades[3,2] > mathgrades[3,3] && mathgrades[3,2] > mathgrades[3,4] && mathgrades[3,2] > mathgrades[3,5]) {
+  steveHighest <- mathgrades[3,2]
+} else if (mathgrades[3,3] > mathgrades[3,4] && mathgrades[3,3] > mathgrades[3,5]) {
+  steveHighest <- mathgrades[2,3]
+} else if (mathgrades[3,4] > mathgrades[3,5] && mathgrades[3,2] > mathgrades[3,5]) {
+  steveHighest <- mathgrades[3,4]
+} else {
+  steveHighest <- mathgrades[3,5]
+}
+
+# hanna scores
+if (mathgrades[4,2] > mathgrades[4,3] && mathgrades[4,2] > mathgrades[4,4] && mathgrades[4,2] > mathgrades[4,5]) {
+  hannaHighest <- mathgrades[4,2]
+} else if (mathgrades[4,3] > mathgrades[4,4] && mathgrades[4,3] > mathgrades[4,5]) {
+  hannaHighest <-mathgrades[2,3]
+} else if (mathgrades[4,4] > mathgrades[4,5] && mathgrades[4,2] > mathgrades[4,5]) {
+  hannaHighest <- mathgrades[4,4]
+} else {
+  hannaHighest <- mathgrades[4,5]
+}
+
+mathgrades$HighestGrades <- c(annieHighest, theaHighest, steveHighest, hannaHighest)
+
+
+above90 <- mathgrades[mathgrades$HighestGrades > 90,]
+above90
+
+if (nrow(above90) > 0) {
+  paste(above90$Name, "'s highest grade this semester is", above90$HighestGrade)
+} else {
+  paste("No students have an average math score over 90.")
+}
+
 
 
 
