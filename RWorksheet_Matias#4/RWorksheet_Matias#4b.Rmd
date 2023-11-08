@@ -1,0 +1,49 @@
+
+#1.Using the for loop
+
+vectorA <- c(1,2,3,4,5)
+
+matrixA <- matrix(0,nrow = 5, ncol =5)
+
+  for (j in 1:5)
+  for (k in 1:5)
+  {
+    matrixA[j,k] <- abs (vectorA[j] - vectorA[k])
+  }
+
+matrixA
+
+# 2.Print the string "*" using for() function.
+for (j in 1:5) {
+  cat(paste0("\"", rep("*", j), "\""), "\n")
+}
+
+#3.Get an input from the user to print the Fibonacci sequence starting from the 1st input up to 500. Use repeat and break statements.
+start <- as.numeric(readline("Enter the number of terms to print in the Fibonacci sequence: "))
+
+if (is.na(start)) {
+ cat("Error: Please enter a valid number.\n")
+} else {
+ a <- 0
+ b <- 1
+
+ cat("Fibonacci sequence starts from", start, ":\n")
+ cat(start, "")
+
+ repeat {
+    nextFib <- a + b
+    if (nextFib > start) {
+      break
+    }
+    cat(nextFib, " ")
+    a <- b
+    b <- nextFib
+ }
+
+ cat("\n")
+}
+
+
+
+
+
