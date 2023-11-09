@@ -1,5 +1,15 @@
+---
+title: "RWorkSheet_Matias#4b"
+output: html_document
+date: "2023-11-09"
+---
 
-#1.Using the for loop
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1.Using the for loop
+```{r name, echo = TRUE}
 
 vectorA <- c(1,2,3,4,5)
 
@@ -12,38 +22,162 @@ matrixA <- matrix(0,nrow = 5, ncol =5)
   }
 
 matrixA
+```
 
-# 2.Print the string "*" using for() function.
+2.Print the string "*" using for() function.
+```{r name, echo = TRUE}
 for (j in 1:5) {
   cat(paste0("\"", rep("*", j), "\""), "\n")
 }
+```
 
-#3.Get an input from the user to print the Fibonacci sequence starting from the 1st input up to 500. Use repeat and break statements.
-start <- as.numeric(readline("Enter the number of terms to print in the Fibonacci sequence: "))
+3.Get an input from the user to print the Fibonacci sequence starting from the 1st input up to 500. Use repeat and break statements.
+```{r name, echo = TRUE}
 
-if (is.na(start)) {
- cat("Error: Please enter a valid number.\n")
-} else {
- a <- 0
- b <- 1
+input <- as.integer(readline("Enter starting number for Fibonacci Sequence: "))
 
- cat("Fibonacci sequence starts from", start, ":\n")
- cat(start, "")
+x <- input
+y <- 0
 
- repeat {
-    nextFib <- a + b
-    if (nextFib > start) {
-      break
-    }
-    cat(nextFib, " ")
-    a <- b
-    b <- nextFib
- }
 
- cat("\n")
+cat("Fibonacci sequence starting from", input, ":\n")
+
+repeat {
+ 
+  nextNum <- x + y
+ 
+  if (nextNum > 500){
+    break
+  }
+  cat(nextNum, " ")
+  x <- y
+  y <- nextNum
+ 
 }
+```
 
+4. What is the R script for importing an excel or a csv file?
+```{r name, echo = TRUE}
 
+write.csv(HOUSEHOLD_DATA, file = "HOUSEHOLD_DATA.csv")
+import<- read.csv("HOUSEHOLD_DATA.csv")
+import
 
+imported<-head(HOUSEHOLD_DATA, 6)
+imported
+```
 
+4b. Create a subset for gender(female and male). How many observations are there in Male? How about in Female?
+```{r name, echo = TRUE}
 
+male <- import[import$Gender == "M",]
+male
+
+female <- import[import$Gender == "F",]
+female
+
+numMale <- nrow(male)
+numMale
+
+numFem <- nrow(female)
+numFem
+```
+
+4c. Create a graph for the number of males and females for Household Data. Use plot(), chart type = barplot. Make sure to place title, legends, and colors.
+```{r name, echo = TRUE}
+totalMaleFemale <- table(import$Gender)
+barplot(totalMaleFemale,
+        main = "Number of Males and Females",
+        xlab = "Gender",
+        ylab = "Count",
+        col = c("pink", "skyblue"),
+        legend.text = rownames(totalMaleFemale),
+        beside = TRUE)
+```
+
+5. The monthly income of Dela Cruz family was spent on the following:
+```{r name, echo = TRUE}
+
+spend_data <- data.frame(
+  Category = c("Food", "Electricity", "Savings", "Miscellaneous"),
+  Value = c(60, 10, 5, 25)
+)
+
+spend_data$Percentage <- spend_data$Value / sum(spend_data$Value) * 100
+
+colors <- c("cyan", "pink", "blue", "purple")
+
+pie(spend_data$Value,
+    labels = paste(spend_data$Category, "(",spend_data$Percentage,"%)"),
+    col = colors,
+    main = "Monthly Income of Dela Cruz Family was spent")
+
+legend("topright", spend_data$Category, fill = colors)
+```
+
+6a. Check for the structure of the data set using the str() function
+```{r name, echo = TRUE}
+data(iris)
+str(iris)
+```
+
+6b.Create an R object that will contain the mean of the sepal.length,
+sepal.width,petal.length,and petal.width.
+```{r name, echo = TRUE}
+mean_Iris <- c(mean(iris$Sepal.Length), mean(iris$Sepal.Width), mean(iris$Petal.Length), mean(iris$Petal.Width))
+mean_Iris
+
+meanSepal_Length <- mean(iris$Sepal.Length)
+meanSepal_Width <- mean(iris$Sepal.Width)
+meanPetal_Length <- mean(iris$Petal.Length)
+meanPetal_Width <- mean(iris$Petal.Width)
+
+mean_Iris <- data.frame(Sepal_Length = meanSepal_Length,
+                        Sepal_Width = meanSepal_Width,
+                        Petal_Length = meanPetal_Length,
+                        Petal_Width = meanPetal_Width)
+mean_Iris
+```
+
+6c. Create a pie chart for the Species distribution. Add title, legends, and colors.
+```{r name, echo = TRUE}
+Species <- table(iris$Species)
+pie(Species, labels = Species, col = rainbow(length(Species)), main = "Species Distribution")
+legend("topright", names(Species), cex = 1.0 , fill = rainbow(length(Species)))
+```
+
+6d. Subset the species into setosa, versicolor, and virginica. Write the R scripts and show the last six (6) rows of each species.
+```{r name, echo = TRUE}
+setosa<- subset(iris, Species == "setosa")
+versicolor <- subset(iris, Species == "versicolor")
+virginica <- subset(iris, Species == "virginica")
+
+tail(setosa, 6)
+tail(versicolor, 6)
+tail(virginica, 6)
+```
+
+6e.Create a scatterplot of the sepal.length and sepal.width using the different species(setosa, versicolor, virginica). Add a title = “Iris Dataset”, subtitle = “Sepal width and length, labels for the x and y axis, the pch symbol and colors should be based on the species.
+```{r name, echo = TRUE}
+iris$Species <- as.factor(iris$Species)
+
+# Convert the "Species" column to a factor
+iris$Species <- as.factor(iris$Species)
+
+# Create a scatterplot
+plot(
+  Sepal.Length ~ Sepal.Width,
+  data = iris,
+  pch = as.integer(iris$Species),
+  # Use different pch symbols for each species
+  col = as.integer(iris$Species),
+  # Use different colors for each species
+  xlab = "Sepal Length",
+  ylab = "Sepal Width",
+  main = "Iris Dataset",
+  sub = "Sepal width and length"
+)
+
+# Add a legend
+legend("topright", legend = levels(iris$Species), col = 1:3, pch = 1:3, cex = 0.6, title = "Species")
+```
