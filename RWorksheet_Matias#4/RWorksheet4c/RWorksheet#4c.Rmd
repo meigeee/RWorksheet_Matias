@@ -1,0 +1,101 @@
+---
+title: "RWorksheet_Matias#4c"
+output: html_document
+date: "2023-11-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1a. Use the dataset mpg. Show your solutions on how to import a csv file into the environment.
+```{r}
+mpg <- read.csv(file = "mpg.csv", header = T, sep = ",")
+mpg
+```
+1b.
+```{r}
+mpg_Var <- names(sapply(mpg, function(x) is.factor(x) || is.character(x)))
+mpg_Var
+```
+1c.
+```{r}
+ContVarsNnames <- names(sapply(mpg, is.numeric))
+ContVarsNnames
+```
+2.Which manufacturer has the most models in this data set? Which model has the most variations?
+```{r}
+library(dplyr)
+
+  most_manufacturer <- mpg %>%
+  group_by(manufacturer) %>%
+  summarize(nummodels = n_distinct(model)) %>%
+  arrange(desc(nummodels)) %>%
+  head(1)
+
+
+  most_variations <- mpg %>%
+  group_by(model) %>%
+  summarize(numvariations = n()) %>%
+  arrange(desc(numvariations)) %>%
+  head(1)
+
+
+cat("Manufacturer with the Most Models:", most_manufacturer $manufacturer, "\n")
+cat("Model with the Most Variations:", most_variations$model, "\n")
+
+```
+2a. Group the manufacturers and find the unique models.
+```{r}
+library(dplyr)
+
+unique_models <- mpg %>%
+  group_by(manufacturer) %>%
+  summarize(unique_models = n_distinct(model))
+
+print(unique_models)
+```
+2b. Graph the result by using plot() and ggplot().
+```{r}
+
+```
+2. Same dataset will be used. You are going to show the relationship of the modeland the manufacturer.
+```{r}
+```
+2a. What does ggplot(mpg, aes(model, manufacturer)) + geom_point() show?
+```{r}
+```
+2b. For you, is it useful? If not, how could you modify the data to make it more informative?
+```{r}
+```
+3.Plot the model and the year using ggplot(). Use only the top 20 observations. Write the codes and its results.
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+
+
