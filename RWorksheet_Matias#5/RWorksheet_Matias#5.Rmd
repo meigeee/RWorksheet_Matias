@@ -1,0 +1,38 @@
+---
+title: "Final Project"
+output: pdf_document
+date: "2023-12-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages('rvest')
+library(rvest)
+
+# Initialize the url
+url <- 'https://www.amazon.com/dp/B00OJ7M8Y6/'
+
+# Scrape the webpage
+webpage <- read_html("a-text-bold" Customer Reviews: )
+
+# Find all review divs
+reviews <- webpage %>% html_nodes(xpath='//div[@data-hook="review"]')
+
+# Create an empty list to store the reviews
+all_reviews <- list()
+
+# Iterate over the reviews
+for (i in 1:length(reviews)) {
+    # Select the review text and append it to the list
+    review_text <- reviews[i] %>% html_node(xpath='.//span[@data-hook="review-text"]') %>% html_text()
+    all_reviews <- append(all_reviews, review_text)
+}
+
+# Print the first 10 reviews
+for (i in 1:10) {
+    print(all_reviews[[i]])
+}
+```
